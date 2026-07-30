@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Счётчик кликов</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				margin: 0;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			}
+			.counter-container {
+				background: white;
+				padding: 40px;
+				border-radius: 15px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+				text-align: center;
+			}
+			#counter {
+				font-size: 72px;
+				font-weight: bold;
+				margin: 20px 0;
+				/* TODO: добавьте transition для плавной смены цвета */
+			}
+			.buttons {
+				display: flex;
+				gap: 10px;
+				justify-content: center;
+			}
+			button {
+				font-size: 24px;
+				padding: 10px 20px;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: transform 0.1s ease;
+			}
+			button:hover {
+				transform: scale(1.1);
+			}
+			button:active {
+				transform: scale(0.95);
+			}
+			.btn-plus {
+				background: #28a745;
+				color: white;
+			}
+			.btn-minus {
+				background: #dc3545;
+				color: white;
+			}
+			.btn-reset {
+				background: #6c757d;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="counter-container">
+			<h2>Счётчик кликов</h2>
+			<span id="counter">0</span>
+			<div class="buttons">
+				<button id="btnMinus" class="btn-minus">−</button>
+				<button id="btnPlus" class="btn-plus">+</button>
+				<!-- TODO (дополнительно): добавьте кнопку "Сброс" -->
+			</div>
+		</div>
+
+		<script>
+			// TODO: Напишите код здесь
+			// 1. Найдите элементы: counter, btnPlus, btnMinus
+			const counterContainer = document.querySelector('.counter-container'),
+				counter = counterContainer.querySelector('#counter'),
+				btnPlus = counterContainer.querySelector('#btnPlus'),
+				btnMinus = counterContainer.querySelector('#btnMinus')
+			// 2. Создайте переменную для хранения текущего значения счётчика (пусть count = 0)
+			// 3. Добавьте обработчики на кнопки:
+			//    - btnPlus увеличивает count на 1
+			//    - btnMinus уменьшает count на 1 (но не ниже 0)
+			let count = 0
+
+			counterContainer.addEventListener('click', e => updateCounter(e))
+
+			function updateCounter(event) {
+				if (event.target === btnMinus) {
+					if (count > 0) {
+						count -= 1
+						if (count === 0) {
+							updateStyle(counter, '#dc3545')
+						}
+					}
+				} else {
+					count += 1
+					updateStyle(counter, '#28a745')
+				}
+
+				counter.textContent = `${count}`
+			}
+
+			function updateStyle(element, color) {
+				element.style.color = color
+			}
+			// 4. Обновляйте textContent элемента counter
+			// 5. Меняйте цвет в зависимости от значения:
+			//    - если count > 0, цвет зелёный (#28a745)
+			//    - если count === 0, цвет красный (#dc3545)
+		</script>
+	</body>
+</html>
