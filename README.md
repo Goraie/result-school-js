@@ -6,6 +6,8 @@
 
 [Quiz Renderer](./quiz-renderer/) — универсальный MVC-рендерер тестов на чистых HTML, CSS и JavaScript.
 
+[Открыть опубликованное приложение](https://quiz-renderer-ten.vercel.app)
+
 Возможности проекта:
 
 - четыре типа вопросов;
