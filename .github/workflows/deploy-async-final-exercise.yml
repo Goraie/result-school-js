@@ -1,4 +1,4 @@
-name: Deploy async final exercise to GitHub Pages
+name: Deploy exercises to GitHub Pages
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - async-final-exercise/**
+      - blog-board/**
       - .github/workflows/deploy-async-final-exercise.yml
   workflow_dispatch:
 
@@ -32,10 +33,16 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare site
+        run: |
+          mkdir -p _site/blog-board
+          cp -R async-final-exercise/. _site/
+          cp -R blog-board/. _site/blog-board/
+
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: async-final-exercise
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

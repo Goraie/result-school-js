@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Result.blog — доска публикаций</title>
+		<link rel="icon" href="data:," />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="app.js" defer></script>
+	</head>
+	<body>
+		<div class="blog-board">
+			<h1 class="blog-board__title">Result.blog</h1>
+
+			<div class="blog-board__container">
+				<aside class="blog-board__panel blog-board__users" aria-labelledby="users-title">
+					<h2 id="users-title" class="blog-board__heading">Авторы</h2>
+					<ul id="users-list" class="blog-board__list" aria-live="polite"></ul>
+				</aside>
+
+				<main class="blog-board__panel blog-board__posts">
+					<h2 id="posts-title" class="blog-board__heading">Посты</h2>
+					<ul
+						id="posts-list"
+						class="blog-board__list"
+						aria-labelledby="posts-title"
+						aria-live="polite"
+					>
+						<li class="blog-board__status">
+							Выберите автора, чтобы увидеть его посты
+						</li>
+					</ul>
+				</main>
+
+				<section
+					class="blog-board__panel blog-board__comments"
+					aria-labelledby="comments-title"
+				>
+					<h2 id="comments-title" class="blog-board__heading">Комментарии</h2>
+					<ul id="comments-list" class="blog-board__list" aria-live="polite">
+						<li class="blog-board__status">
+							Выберите пост, чтобы увидеть комментарии
+						</li>
+					</ul>
+
+					<form id="comment-form" class="comment-form" hidden>
+						<h3 class="comment-form__title">Новый комментарий</h3>
+
+						<label class="comment-form__field">
+							<span class="comment-form__label">Имя</span>
+							<input class="comment-form__input" name="name" type="text" required />
+						</label>
+
+						<label class="comment-form__field">
+							<span class="comment-form__label">Комментарий</span>
+							<textarea class="comment-form__input" name="body" rows="4" required></textarea>
+						</label>
+
+						<button class="comment-form__submit" type="submit">
+							Отправить комментарий
+						</button>
+						<p
+							id="comment-form-status"
+							class="comment-form__status"
+							aria-live="polite"
+						></p>
+					</form>
+				</section>
+			</div>
+		</div>
+	</body>
+</html>
