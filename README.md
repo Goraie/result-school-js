@@ -1,12 +1,13 @@
 # Result School — JavaScript Projects
 
-Учебный репозиторий с проектами курса Result School по JavaScript. Здесь собраны два приложения на чистых HTML, CSS и JavaScript: блог с асинхронной загрузкой данных и MVC-конструктор тестов.
+Учебный репозиторий с проектами курса Result School по JavaScript. Здесь собраны приложения на чистых HTML, CSS и JavaScript: интерактивные блоги с асинхронной загрузкой данных и MVC-конструктор тестов.
 
 ## Проекты
 
 | Проект | Что демонстрирует | Демо | Исходники |
 | --- | --- | --- | --- |
 | **Result.blog** | `fetch`, `async/await`, обработку состояний загрузки и ошибок, фильтрацию данных | [Открыть сайт](https://goraie.github.io/result-school-js/) | [`async-final-exercise/`](./async-final-exercise/) |
+| **Blog Board** | Асинхронную архитектуру, кеширование, делегирование событий и POST-запросы | [Открыть доску](https://goraie.github.io/result-school-js/blog-board/) | [`blog-board/`](./blog-board/) |
 | **Quiz Renderer** | ООП, MVC, работу с DOM, `localStorage` и модульное тестирование | [Открыть приложение](https://quiz-renderer-ten.vercel.app) | [`quiz-renderer/`](./quiz-renderer/) |
 
 ## Result.blog
@@ -31,7 +32,44 @@ python3 -m http.server 8080
 
 Затем откройте [http://localhost:8080/async-final-exercise/](http://localhost:8080/async-final-exercise/).
 
-Проект автоматически публикуется на GitHub Pages при изменениях в папке `async-final-exercise`.
+## Blog Board
+
+Интерактивная трёхколоночная доска на чистом JavaScript. Приложение получает пользователей, посты и комментарии из [JSONPlaceholder](https://jsonplaceholder.typicode.com/) и обновляет только нужную часть интерфейса без перезагрузки страницы.
+
+Возможности:
+
+- загрузка пользователей при старте;
+- показ постов выбранного автора;
+- загрузка комментариев выбранного поста;
+- добавление нового комментария через `POST /comments`;
+- локальное добавление ответа API в интерфейс и кеш;
+- независимые состояния загрузки, пустого результата и ошибки;
+- активные состояния с поддержкой клавиатуры и `aria-pressed`;
+- адаптивная сетка: три колонки на десктопе и одна на мобильных устройствах.
+
+### Архитектура
+
+- `fetchJson` отвечает за запрос, проверку `response.ok` и разбор JSON;
+- `getUsers`, `getPostsByUser`, `getCommentsByPost` и `addComment` описывают операции API;
+- единый объект `state` хранит выбранные ID и кеши `Map` для постов и комментариев;
+- проверка актуального выбранного ID защищает интерфейс от устаревших асинхронных ответов;
+- события кликов делегированы контейнерам списков;
+- DOM-элементы создаются через `document.createElement` и `DocumentFragment`, без шаблонов и фреймворков.
+
+### Локальный запуск
+
+```bash
+cd blog-board
+python3 -m http.server 4173
+```
+
+Затем откройте [http://localhost:4173](http://localhost:4173).
+
+### Пример запроса к ИИ для улучшений
+
+> Помоги улучшить приложение на чистом JavaScript: перенеси клики на делегирование событий, выделяй активного автора и пост через класс и `aria-pressed`, кешируй результаты в `Map`, не перерисовывай всю страницу и защити интерфейс от устаревших асинхронных ответов.
+
+Оба блога автоматически публикуются через GitHub Actions: `Result.blog` доступен в корне GitHub Pages, а Blog Board — по пути `/blog-board/`.
 
 ## Quiz Renderer
 
@@ -76,8 +114,9 @@ npm test
 ```text
 .
 ├── async-final-exercise/   # Result.blog
+├── blog-board/             # пользователи, посты и комментарии
 ├── quiz-renderer/          # MVC-приложение и тесты
-└── .github/workflows/      # публикация Result.blog на GitHub Pages
+└── .github/workflows/      # публикация блогов на GitHub Pages
 ```
 
 ## Технологии
