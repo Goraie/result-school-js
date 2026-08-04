@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Result.blog</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<script src="app.js" defer></script>
+	</head>
+	<body>
+		<section class="blog">
+			<h1 class="blog__title">Result.blog</h1>
+			<div id="blog-container" class="blog__container">
+				<div class="blog__authors">
+					<h2 class="blog__heading">Авторы</h2>
+					<ul class="blog__list"></ul>
+				</div>
+				<div class="blog__posts">
+					<input
+						type="text"
+						name="search"
+						class="blog__search"
+						id="search"
+						placeholder="Поиск по постам"
+						data-search
+						hidden
+					/>
+					<ul class="blog__list"></ul>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
